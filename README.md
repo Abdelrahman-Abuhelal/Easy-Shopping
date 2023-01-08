@@ -1,6 +1,6 @@
 # Shopping-Cart
 
-It is a shop for customers to add products to the their cart and then placing an order of the products elements. 
+It is a website for customers to add products to the their cart, then submitting their order. 
 
 Posting Order Request with { product Ids, quantity, customer email and name }
 ![Screenshot (2)](https://user-images.githubusercontent.com/77440941/211189277-f4a3ee11-cb43-4f94-b7ab-46676478bf18.png)
