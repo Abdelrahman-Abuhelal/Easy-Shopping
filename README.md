@@ -11,3 +11,4 @@ Then the total amount will be calculated and returned with invoice number as a r
 It also handles if the product id is null and if the cart has some product which isn't existed in the warehouse
 ![11](https://user-images.githubusercontent.com/77440941/212068401-02cc7d55-af69-499d-8601-9bda50664ac2.png)
 
+![22](https://user-images.githubusercontent.com/77440941/212068854-a0e771e5-be4a-4a91-8cdf-e5cd74205a99.png)
