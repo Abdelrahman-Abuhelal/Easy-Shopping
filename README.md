@@ -1,4 +1,4 @@
-# Shopping-Cart
+# Shopping Cart RestApi
 
 It is a website for customers to add products to the their cart, then submitting their order. 
 
