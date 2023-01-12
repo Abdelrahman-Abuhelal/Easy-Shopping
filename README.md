@@ -7,3 +7,7 @@ Posting Order Request with { product Ids, quantity, customer email and name }
 
 Then the total amount will be calculated and returned with invoice number as a response to the customer
 ![Screenshot (4)](https://user-images.githubusercontent.com/77440941/211189363-cb88b0fe-af74-4209-994b-3bdb50bb7b93.png)
+
+It also handles if the product id is null and if the cart has some product which isn't existed in the warehouse
+![11](https://user-images.githubusercontent.com/77440941/212068401-02cc7d55-af69-499d-8601-9bda50664ac2.png)
+
