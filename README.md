@@ -1,6 +1,6 @@
 # Shopping Cart RestApi
 
-It is a website for customers to add products to the their cart, then submitting their order. 
+It is a website for customers to add products to the their cart, submitting their order then receiving an invoice for the order. 
 
 * Posting Order Request with { product Ids, quantity, customer email and name }
 ![Screenshot (2)](https://user-images.githubusercontent.com/77440941/211189277-f4a3ee11-cb43-4f94-b7ab-46676478bf18.png)
