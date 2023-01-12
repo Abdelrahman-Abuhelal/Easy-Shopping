@@ -1,14 +1,11 @@
 package com.example.shoppingcart.service;
 
-import com.example.shoppingcart.dto.OrderDTO;
-import com.example.shoppingcart.entity.Customer;
 import com.example.shoppingcart.entity.Order;
 import com.example.shoppingcart.entity.Product;
 import com.example.shoppingcart.entity.ShoppingCart;
+import com.example.shoppingcart.exception.ResourceNotFoundException;
 import com.example.shoppingcart.repository.OrderRepository;
 import com.example.shoppingcart.repository.ProductRepository;
-import org.aspectj.weaver.ast.Or;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,7 +52,8 @@ public class OrderService {
                productRepository.save(product1);
            }
         }
-        return totalCartAmount;
+           return totalCartAmount;
+
     }
 
     public Order saveOrder(Order order){
@@ -63,4 +61,12 @@ public class OrderService {
     }
 
 
+    public Boolean isAcceptedOrder(List<ShoppingCart>shoppingCartList){
+        for (ShoppingCart cart: shoppingCartList){
+            if (!productRepository.existsById(cart.getId())){
+                throw  new ResourceNotFoundException(" product with id - > "+ cart.getId() +" doesn't exist ");
+            }
+        }
+        return true;
+    }
 }

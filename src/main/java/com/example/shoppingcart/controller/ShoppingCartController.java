@@ -5,6 +5,8 @@ import com.example.shoppingcart.dto.ResponseOrderDTO;
 import com.example.shoppingcart.entity.Customer;
 import com.example.shoppingcart.entity.Order;
 import com.example.shoppingcart.entity.Product;
+import com.example.shoppingcart.entity.ShoppingCart;
+import com.example.shoppingcart.exception.ResourceNotFoundException;
 import com.example.shoppingcart.service.CustomerService;
 import com.example.shoppingcart.service.OrderService;
 import com.example.shoppingcart.service.ProductService;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 
@@ -41,23 +44,26 @@ public class ShoppingCartController {
         return ResponseEntity.ok(customers);
     }
 
-    @PostMapping("/add-product")
-    public ResponseEntity<Product>addProduct(@RequestBody Product product){
-       Product product1= productService.saveProduct(product);
-       return ResponseEntity.ok(product1);
-    }
+//    @PostMapping("/add-product")
+//    public ResponseEntity<Product>addProduct(@RequestBody Product product){
+//       Product product1= productService.saveProduct(product);
+//       return ResponseEntity.ok(product1);
+//    }
 
-    @PostMapping("/add-customer")
-    public ResponseEntity<Customer>addCustomer(@RequestBody Customer customer){
-        Customer customer1= customerService.saveCustomer(customer);
-        return ResponseEntity.ok(customer1);
-    }
+//    @PostMapping("/add-customer")
+//    public ResponseEntity<Customer>addCustomer(@RequestBody Customer customer){
+//        Customer customer1= customerService.saveCustomer(customer);
+//        return ResponseEntity.ok(customer1);
+//    }
 
 
 
     @PostMapping("/place-order")
-   public ResponseEntity<ResponseOrderDTO>placeOrder(@RequestBody OrderDTO orderDTO){
+   public ResponseEntity<Object>placeOrder(@RequestBody OrderDTO orderDTO) {
         ResponseOrderDTO responseOrderDTO=new ResponseOrderDTO();
+        for (ShoppingCart cart: orderDTO.getCartItems()){
+                productService.productExistsById(cart.getProductId());
+            }
         float amount = orderService.getCartAmount(orderDTO.getCartItems());
         Customer customer=new Customer(orderDTO.getCustomerName(),orderDTO.getCustomerEmail());
         Long CustomerIdFromDb=customerService.isCustomerPresent(customer);
