@@ -70,7 +70,7 @@ public class ShoppingCartController {
         order=orderService.saveOrder(order);
         responseOrderDTO.setOrderId(customer.getId());
         responseOrderDTO.setOrderDescription(order.getOrderDescription());
-        responseOrderDTO.setInvoiceNumber(new Random().nextLong(1000));
+        responseOrderDTO.setInvoiceNumber(new Random(1000).nextLong());
         responseOrderDTO.setAmount(amount);
         responseOrderDTO.setDate(DateUtil.getCurrentDateTime());
 
