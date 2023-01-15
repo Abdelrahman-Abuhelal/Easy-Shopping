@@ -44,11 +44,19 @@ public class ShoppingCartController {
         return ResponseEntity.ok(customers);
     }
 
-//    @PostMapping("/add-product")
-//    public ResponseEntity<Product>addProduct(@RequestBody Product product){
-//       Product product1= productService.saveProduct(product);
-//       return ResponseEntity.ok(product1);
-//    }
+
+    @PutMapping("/update-order/{orderId}")
+    public ResponseEntity<Order>updateOrder(@RequestBody OrderDTO orderDTO,@PathVariable Long orderId){
+       Order order= orderService.updateOrder(orderDTO,orderId);
+       return ResponseEntity.ok(order);
+    }
+
+
+    @PostMapping("/add-product")
+    public ResponseEntity<Product>addProduct(@RequestBody Product product){
+       Product product1= productService.saveProduct(product);
+       return ResponseEntity.ok(product1);
+    }
 
 //    @PostMapping("/add-customer")
 //    public ResponseEntity<Customer>addCustomer(@RequestBody Customer customer){

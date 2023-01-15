@@ -18,4 +18,5 @@ public class Product {
         private Long availableQuantity;
         private Long price;
 
+
 }
