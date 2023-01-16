@@ -1,6 +1,7 @@
 package com.example.shoppingcart.repository;
 
 import com.example.shoppingcart.entity.Customer;
+import com.example.shoppingcart.repository.CustomerRepository;
 import org.junit.Test;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;

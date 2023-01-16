@@ -13,6 +13,7 @@ import com.example.shoppingcart.service.ProductService;
 import com.example.shoppingcart.util.DateUtil;
 import org.aspectj.weaver.ast.Or;
 import org.hibernate.type.descriptor.DateTimeUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,7 @@ public class ShoppingCartController {
     private final OrderService orderService;
     private final CustomerService customerService;
     private final ProductService productService;
+    @Autowired
     public ShoppingCartController(OrderService orderService, CustomerService customerService, ProductService productService) {
         this.orderService = orderService;
         this.customerService = customerService;

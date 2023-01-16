@@ -4,6 +4,7 @@ import com.example.shoppingcart.entity.Product;
 import com.example.shoppingcart.entity.ShoppingCart;
 import com.example.shoppingcart.exception.ResourceNotFoundException;
 import com.example.shoppingcart.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 public class ProductService {
     private ProductRepository productRepository;
 
+    @Autowired
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
