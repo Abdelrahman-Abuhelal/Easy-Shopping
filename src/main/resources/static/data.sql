@@ -1,1 +1,0 @@
-INSERT INTO Product VALUES ('xbox',40,3200);
