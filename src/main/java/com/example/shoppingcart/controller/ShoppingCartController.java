@@ -23,7 +23,7 @@ import java.util.Optional;
 import java.util.Random;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api-order")
 public class ShoppingCartController {
     private final OrderService orderService;
     private final CustomerService customerService;
@@ -34,17 +34,6 @@ public class ShoppingCartController {
         this.customerService = customerService;
         this.productService = productService;
     }
-    @GetMapping("/get-all-products")
-    public ResponseEntity<List<Product>>getAllProducts(){
-      List<Product>products=  productService.getAllProducts();
-      return ResponseEntity.ok(products);
-    }
-
-    @GetMapping("/get-all-customers")
-    public ResponseEntity<List<Customer>>getAllCustomers(){
-        List<Customer>customers=  customerService.getAllCustomer();
-        return ResponseEntity.ok(customers);
-    }
 
 
     @PutMapping("/update-order/{orderId}")
@@ -52,19 +41,6 @@ public class ShoppingCartController {
        Order order= orderService.updateOrder(orderDTO,orderId);
        return ResponseEntity.ok(order);
     }
-
-
-    @PostMapping("/add-product")
-    public ResponseEntity<Product>addProduct(@RequestBody Product product){
-       Product product1= productService.saveProduct(product);
-       return ResponseEntity.ok(product1);
-    }
-
-//    @PostMapping("/add-customer")
-//    public ResponseEntity<Customer>addCustomer(@RequestBody Customer customer){
-//        Customer customer1= customerService.saveCustomer(customer);
-//        return ResponseEntity.ok(customer1);
-//    }
 
 
 

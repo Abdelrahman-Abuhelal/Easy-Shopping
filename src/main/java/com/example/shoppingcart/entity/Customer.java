@@ -16,11 +16,13 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String userName;
     private String email;
+    private String password;
 
-    public Customer(String name, String email) {
-        this.name = name;
+
+    public Customer(String userName, String email) {
+        this.userName = userName;
         this.email = email;
     }
 }

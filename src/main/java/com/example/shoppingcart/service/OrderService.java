@@ -8,7 +8,6 @@ import com.example.shoppingcart.entity.ShoppingCart;
 import com.example.shoppingcart.exception.ResourceNotFoundException;
 import com.example.shoppingcart.repository.OrderRepository;
 import com.example.shoppingcart.repository.ProductRepository;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
