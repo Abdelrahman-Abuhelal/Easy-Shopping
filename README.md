@@ -1,6 +1,19 @@
 # Shopping Cart RestApi
 
-It is a Web Application for customers to add products to the their cart, submitting their order then receiving an invoice for the order. 
+. This is a REST API service for customers to add products to the their cart, submitting their order then receiving an invoice for the order. 
+
+Technologies Used
+ Java 
+ Spring Boot
+ REST API
+ Hibernate
+ Spring JPA
+ Junit
+ Mockito
+ MySQL Database
+ Maven Build Tool
+ Intellij Idea
+ Postman
 
 * Posting Order Request with { product Ids, quantity, customer email and name }
 ![Screenshot (2)](https://user-images.githubusercontent.com/77440941/211189277-f4a3ee11-cb43-4f94-b7ab-46676478bf18.png)
