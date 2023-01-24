@@ -2,10 +2,10 @@
 
 . This is a REST API service for customers to add products to the their cart, submitting their order then receiving an invoice for the order. 
 
-Technologies Used
- Java                                                                                                                                                      
- Spring Boot
- REST API
+# Technologies Used
+* Java                                                                                                                                                      
+* Spring Boot
+* REST API
  Hibernate
  Spring JPA
  Junit
