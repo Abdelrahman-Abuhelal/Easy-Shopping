@@ -1,10 +1,7 @@
 package com.example.shoppingcart;
 
-import com.example.shoppingcart.ShoppingCartApplication;
-import com.example.shoppingcart.entity.Customer;
-import com.example.shoppingcart.entity.Order;
-import com.example.shoppingcart.service.CustomerService;
-import com.example.shoppingcart.service.OrderService;
+import com.example.shoppingcart.entity.appUser.AppUser;
+import com.example.shoppingcart.service.AppUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,21 +18,21 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(classes = {ShoppingCartApplication.class})
 public class ProjectTest {
     @Autowired
-    private CustomerService customerService;
+    private AppUserService appUserService;
 
     @Test
-    public void findCustomerByExistedEmail(){
+    public void findAppUserByExistedEmail(){
         String existedEmail="malik.hilal14@gmail.com";
-      Optional<Customer> customer= customerService.getCustomerByEmail(existedEmail);
-      assertEquals(true,customer.isPresent());
-      assertEquals(existedEmail,customer.get().getEmail());
+      Optional<AppUser> appUser= appUserService.getAppUserByEmail(existedEmail);
+      assertEquals(true,appUser.isPresent());
+      assertEquals(existedEmail,appUser.get().getEmail());
     }
 
     @Test
-    public void findCustomerByNonExistedEmail(){
-        String nonExistedEmail="NotExistedCustomer@gmail.com";
-        Optional<Customer> customer= customerService.getCustomerByEmail(nonExistedEmail);
-        assertEquals(false,customer.isPresent());
+    public void findAppUserByNonExistedEmail(){
+        String nonExistedEmail="NotExistedAppUser@gmail.com";
+        Optional<AppUser> appUser= appUserService.getAppUserByEmail(nonExistedEmail);
+        assertEquals(false,appUser.isPresent());
     }
 
 }

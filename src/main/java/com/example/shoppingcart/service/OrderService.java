@@ -1,7 +1,7 @@
 package com.example.shoppingcart.service;
 
 import com.example.shoppingcart.dto.OrderDTO;
-import com.example.shoppingcart.entity.Customer;
+import com.example.shoppingcart.entity.appUser.AppUser;
 import com.example.shoppingcart.entity.Order;
 import com.example.shoppingcart.entity.Product;
 import com.example.shoppingcart.entity.ShoppingCart;
@@ -65,12 +65,12 @@ public class OrderService {
         if (!order1.isPresent()){
             throw new ResourceNotFoundException("the order with id "+id+ " does not exist");
         }
-        Customer updatedCustomer=new Customer(orderDTO.getCustomerName(),orderDTO.getCustomerEmail());
+        AppUser updatedAppUser=new AppUser(orderDTO.getCustomerUsername(),orderDTO.getCustomerEmail());
         Order updatedOrder =new Order();
 
         updatedOrder.setId(id);
         updatedOrder.setOrderDescription(orderDTO.getOrderDescription());
-        updatedOrder.setCustomer(updatedCustomer);
+        updatedOrder.setAppUser(updatedAppUser);
         updatedOrder.setCartItems(orderDTO.getCartItems());
       return   orderRepository.save(updatedOrder);
     }

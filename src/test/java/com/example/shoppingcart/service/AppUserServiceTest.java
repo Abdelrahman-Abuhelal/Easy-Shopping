@@ -1,8 +1,8 @@
 package com.example.shoppingcart.service;
 
-import com.example.shoppingcart.repository.CustomerRepository;
+import com.example.shoppingcart.repository.AppUserRepository;
 import com.example.shoppingcart.ShoppingCartApplication;
-import com.example.shoppingcart.entity.Customer;
+import com.example.shoppingcart.entity.appUser.AppUser;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -19,19 +19,19 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {ShoppingCartApplication.class})
-public class CustomerServiceTest {
+public class AppUserServiceTest {
     @Autowired
-    private CustomerService customerService;
+    private AppUserService appUserService;
 
     @MockBean
-    private CustomerRepository customerRepository;
+    private AppUserRepository appUserRepository;
 
     @Test
-    public void findCustomerByEmailExists(){
+    public void findAppUserByEmailExists(){
         String existedEmail="malik.hilal14@gmail.com";
-        Customer customer=new Customer("Malik",existedEmail);
-        Mockito.when(customerRepository.getCustomersByEmail(Mockito.anyString())).thenReturn(Optional.of(customer));
-       Optional<Customer>customer1= customerService.getCustomerByEmail(existedEmail);
-       assertEquals(true,customer1.isPresent());
+        AppUser AppUser=new AppUser("Malik",existedEmail);
+        Mockito.when(appUserRepository.getAppUserByEmail(Mockito.anyString())).thenReturn(Optional.of(AppUser));
+       Optional<AppUser>AppUser1= appUserService.getAppUserByEmail(existedEmail);
+       assertEquals(true,AppUser1.isPresent());
     }
 }

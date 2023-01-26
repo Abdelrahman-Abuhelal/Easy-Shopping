@@ -1,14 +1,11 @@
 package com.example.shoppingcart.controller;
 
 import com.example.shoppingcart.ShoppingCartApplication;
-import com.example.shoppingcart.entity.Customer;
-import com.example.shoppingcart.repository.CustomerRepository;
-import com.example.shoppingcart.service.CustomerService;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.example.shoppingcart.entity.appUser.AppUser;
+import com.example.shoppingcart.service.AppUserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,32 +26,32 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {ShoppingCartApplication.class})
-public class CustomerControllerTest {
+public class AppUserRegistrationControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private ObjectMapper objectMapper;
     @MockBean
-    private CustomerService customerService;
+    private AppUserService appUserService;
 
     @Test
-    public void getCustomerByEmailExists() throws Exception {
+    public void getAppUserByEmailExists() throws Exception {
         String existedEmail="malik.hilal14@gmail.com";
-        Customer customer=new Customer("Malik",existedEmail);
-        Mockito.when(customerService.getCustomerByEmail(Mockito.anyString())).thenReturn(Optional.of(customer));
-        mockMvc.perform( get("/api/get-customer/email/{email}",existedEmail))
+        AppUser appUser=new AppUser("Malik",existedEmail);
+        Mockito.when(appUserService.getAppUserByEmail(Mockito.anyString())).thenReturn(Optional.of(appUser));
+        mockMvc.perform( get("/api/get-AppUser/email/{email}",existedEmail))
                 .andExpectAll(content().contentType("application/json"))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void addCustomer() throws Exception {
-        Customer customer=new Customer("khaled","khaled@gmail.com");
-        Mockito.when(customerService.saveCustomer(Mockito.any())).thenReturn(customer);
+    public void addAppUser() throws Exception {
+        AppUser appUser=new AppUser("khaled","khaled@gmail.com");
+        Mockito.when(appUserService.registerCustomerUser(Mockito.any())).thenReturn(appUser);
 
-        mockMvc.perform(post("/api-customer/add-customer").contentType("application/json")
-                .content(objectMapper.writeValueAsString(customer)))
+        mockMvc.perform(post("/api-AppUser/add-AppUser").contentType("application/json")
+                .content(objectMapper.writeValueAsString(appUser)))
                 .andExpect(status().isOk());
     }
 }
