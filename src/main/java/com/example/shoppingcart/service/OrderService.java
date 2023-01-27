@@ -1,5 +1,7 @@
 package com.example.shoppingcart.service;
 
+import com.example.shoppingcart.dto.OrderDTO;
+import com.example.shoppingcart.entity.appUser.AppUser;
 import com.example.shoppingcart.entity.Order;
 import com.example.shoppingcart.entity.Product;
 import com.example.shoppingcart.entity.ShoppingCart;
@@ -14,8 +16,8 @@ import java.util.Optional;
 @Service
 public class OrderService {
 
-    private OrderRepository orderRepository;
-    private ProductRepository productRepository;
+    private final OrderRepository orderRepository;
+    private final ProductRepository productRepository;
 
     public OrderService(OrderRepository orderRepository,ProductRepository productRepository) {
         this.orderRepository = orderRepository;
@@ -54,6 +56,23 @@ public class OrderService {
         }
            return totalCartAmount;
 
+    }
+    public Order updateOrder(OrderDTO orderDTO,Long id){
+        if (orderDTO==null || id ==null){
+            throw new ResourceNotFoundException("the order or the id must not be null");
+        }
+        Optional <Order> order1= orderRepository.findById(id);
+        if (!order1.isPresent()){
+            throw new ResourceNotFoundException("the order with id "+id+ " does not exist");
+        }
+        AppUser updatedAppUser=new AppUser(orderDTO.getCustomerUsername(),orderDTO.getCustomerEmail());
+        Order updatedOrder =new Order();
+
+        updatedOrder.setId(id);
+        updatedOrder.setOrderDescription(orderDTO.getOrderDescription());
+        updatedOrder.setAppUser(updatedAppUser);
+        updatedOrder.setCartItems(orderDTO.getCartItems());
+      return   orderRepository.save(updatedOrder);
     }
 
     public Order saveOrder(Order order){

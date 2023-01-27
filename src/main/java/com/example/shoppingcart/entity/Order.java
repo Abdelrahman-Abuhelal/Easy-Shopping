@@ -1,5 +1,6 @@
 package com.example.shoppingcart.entity;
 
+import com.example.shoppingcart.entity.appUser.AppUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,15 +20,15 @@ public class Order {
     private String orderDescription;
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    private Customer customer;
+    private AppUser appUser;
 
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,targetEntity = ShoppingCart.class)
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private List<ShoppingCart>cartItems;
 
-    public Order(String orderDescription, Customer customer, List<ShoppingCart> cartItems) {
+    public Order(String orderDescription, AppUser appUser, List<ShoppingCart> cartItems) {
         this.orderDescription=orderDescription;
-        this.customer=customer;
+        this.appUser=appUser;
         this.cartItems=cartItems;
     }
 }
