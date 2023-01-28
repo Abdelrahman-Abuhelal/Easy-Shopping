@@ -13,7 +13,7 @@ public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 
     Optional<AppUser>  getAppUserByEmailAndUsername(String email, String username);
     Optional<AppUser>  getAppUserByEmail(String email);
-
+    Optional<AppUser>  getAppUserByUsername(String username);
     List<AppUser> getAppUserByRole(AppUserRole role);
 
 }

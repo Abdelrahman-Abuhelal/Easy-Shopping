@@ -3,6 +3,7 @@ package com.example.shoppingcart.controller;
 import com.example.shoppingcart.entity.RegistrationRequest;
 import com.example.shoppingcart.entity.appUser.AppUser;
 import com.example.shoppingcart.service.AppUserService;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

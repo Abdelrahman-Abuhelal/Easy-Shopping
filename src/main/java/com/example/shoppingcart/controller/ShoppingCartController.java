@@ -11,6 +11,7 @@ import com.example.shoppingcart.service.AppUserService;
 import com.example.shoppingcart.service.OrderService;
 import com.example.shoppingcart.service.ProductService;
 import com.example.shoppingcart.util.DateUtil;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +41,7 @@ public class ShoppingCartController {
 
 
     @PostMapping("/place-order")
-   public ResponseEntity<?>placeOrder(@RequestBody OrderDTO orderDTO) {
+   public ResponseEntity<?>placeOrder(@RequestBody @Valid OrderDTO orderDTO) {
         ResponseOrderDTO responseOrderDTO=new ResponseOrderDTO();
         for (ShoppingCart cart: orderDTO.getCartItems()){
                 productService.productExistsById(cart.getProductId());
@@ -48,11 +49,7 @@ public class ShoppingCartController {
         float amount = orderService.getCartAmount(orderDTO.getCartItems());
         AppUser appUser=new AppUser(orderDTO.getCustomerUsername(),orderDTO.getCustomerEmail());
         Long appUserIdFromDb= appUserService.isAppUserPresent(appUser);
-        if (appUserIdFromDb!=null){
-            appUser.setId(appUserIdFromDb);
-        }else{
-            throw new ResourceNotFoundException("Please register before Ordering");
-        }
+        appUser.setId(appUserIdFromDb);
         Order order=new Order(orderDTO.getOrderDescription(),appUser,orderDTO.getCartItems());
         order=orderService.saveOrder(order);
         responseOrderDTO.setOrderId(appUser.getId());
