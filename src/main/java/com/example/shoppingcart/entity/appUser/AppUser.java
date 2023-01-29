@@ -32,7 +32,7 @@ public class AppUser implements UserDetails {
     private AppUserRole role;
 
     private Boolean locked = false;
-    private Boolean enabled = false;
+    private Boolean enabled = true;
     public AppUser(String username, String email) {
         this.username = username;
         this.email = email;

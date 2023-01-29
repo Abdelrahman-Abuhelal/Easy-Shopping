@@ -1,6 +1,7 @@
 package com.example.shoppingcart.controller;
 
-import com.example.shoppingcart.entity.RegistrationRequest;
+import com.example.shoppingcart.entity.customer.CustomerDAO;
+import com.example.shoppingcart.entity.customer.CustomerDTO;
 import com.example.shoppingcart.entity.appUser.AppUser;
 import com.example.shoppingcart.service.AppUserService;
 
@@ -28,9 +29,9 @@ public class AppUserRegistrationController {
         return ResponseEntity.ok(appUsers);
     }
     @GetMapping("/get-all-customers")
-    public ResponseEntity<List<AppUser>> getAllCustomers(){
-        List<AppUser>appUsers=  appUserService.getAllCustomers();
-        return ResponseEntity.ok(appUsers);
+    public ResponseEntity<List<CustomerDTO>> getAllCustomers(){
+        List<CustomerDTO>customers=  appUserService.getAllCustomers();
+        return ResponseEntity.ok(customers);
     }
 
     @GetMapping("/get-appUser/email/{email}")
@@ -40,9 +41,9 @@ public class AppUserRegistrationController {
     }
 
     @PostMapping("/register-customer")
-    public ResponseEntity<?>registerCustomer(@RequestBody @Valid RegistrationRequest registrationRequest){
-        AppUser appUser1= appUserService.registerCustomerUser(registrationRequest);
-        return ResponseEntity.ok(appUser1);
+    public ResponseEntity<?>registerCustomer(@RequestBody @Valid CustomerDAO customerDAO){
+        CustomerDTO customerDTO= appUserService.registerCustomer(customerDAO);
+        return ResponseEntity.ok(customerDTO);
     }
 
 

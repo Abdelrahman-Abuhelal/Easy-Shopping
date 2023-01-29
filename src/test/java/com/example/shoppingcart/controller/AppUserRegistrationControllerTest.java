@@ -2,6 +2,7 @@ package com.example.shoppingcart.controller;
 
 import com.example.shoppingcart.ShoppingCartApplication;
 import com.example.shoppingcart.entity.appUser.AppUser;
+import com.example.shoppingcart.entity.customer.CustomerDTO;
 import com.example.shoppingcart.service.AppUserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
@@ -46,12 +47,12 @@ public class AppUserRegistrationControllerTest {
     }
 
     @Test
-    public void addAppUser() throws Exception {
-        AppUser appUser=new AppUser("khaled","khaled@gmail.com");
-        Mockito.when(appUserService.registerCustomerUser(Mockito.any())).thenReturn(appUser);
+    public void registerCustomer() throws Exception {
+        CustomerDTO customerDTO=new CustomerDTO("khaled","khaled@gmail.com");
+        Mockito.when(appUserService.registerCustomer(Mockito.any())).thenReturn(customerDTO);
 
         mockMvc.perform(post("/api-AppUser/add-AppUser").contentType("application/json")
-                .content(objectMapper.writeValueAsString(appUser)))
+                .content(objectMapper.writeValueAsString(customerDTO)))
                 .andExpect(status().isOk());
     }
 }

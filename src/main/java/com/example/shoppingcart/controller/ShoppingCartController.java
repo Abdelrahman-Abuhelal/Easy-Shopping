@@ -61,10 +61,11 @@ public class ShoppingCartController {
         return ResponseEntity.ok(responseOrderDTO);
     }
 
-    @GetMapping("/order/{orderId}")
+    @GetMapping("/orders/{orderId}")
     public ResponseEntity<Order>getOrderDetail(@PathVariable Long orderId){
        Order order= orderService.getOrderDetail(orderId);
         return  ResponseEntity.ok(order);
     }
+
 
 }
