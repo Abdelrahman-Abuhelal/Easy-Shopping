@@ -1,10 +1,10 @@
 package com.example.shoppingcart.controller;
 
-import com.example.shoppingcart.entity.Product;
+import com.example.shoppingcart.entity.product.Product;
+import com.example.shoppingcart.entity.product.ProductDTO;
 import com.example.shoppingcart.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,15 +22,18 @@ public class ProductController {
 
 
     @GetMapping("/get-all-products")
-    public ResponseEntity<List<Product>> getAllProducts(){
-        List<Product>products=  productService.getAllProducts();
+    public ResponseEntity<List<ProductDTO>> getAllProducts(){
+        List<ProductDTO>products=  productService.getAllProducts();
         return ResponseEntity.ok(products);
     }
 
 
     @PostMapping("/add-product")
-    public ResponseEntity<Product>addProduct(@RequestBody Product product){
-        Product product1= productService.saveProduct(product);
+    public ResponseEntity<ProductDTO>addProduct(@RequestBody Product product){
+        ProductDTO product1= productService.saveProduct(product);
         return ResponseEntity.ok(product1);
     }
+
+
+
 }

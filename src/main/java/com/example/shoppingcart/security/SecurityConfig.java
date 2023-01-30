@@ -18,11 +18,11 @@ public class SecurityConfig   {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/api-users/**").permitAll()
-                .requestMatchers("/api-product/**").permitAll()
-                .requestMatchers("/api-order/**").hasRole(AppUserRole.USER.toString())
-                .anyRequest().permitAll();
+                .authorizeHttpRequests().anyRequest().permitAll();
+//                .requestMatchers("/api-users/**").permitAll()
+//                .requestMatchers("/api-product/**").permitAll()
+//                .requestMatchers("/api-order/**").hasRole(AppUserRole.USER.toString())
+//                .anyRequest().permitAll();
 
         return http.build();
     }

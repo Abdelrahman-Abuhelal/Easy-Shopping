@@ -1,6 +1,8 @@
 package com.example.shoppingcart.service;
 
-import com.example.shoppingcart.entity.Product;
+import com.example.shoppingcart.entity.product.Product;
+import com.example.shoppingcart.entity.product.ProductDTO;
+import com.example.shoppingcart.entity.product.ProductDTOMapper;
 import com.example.shoppingcart.exception.ResourceNotFoundException;
 import com.example.shoppingcart.repository.ProductRepository;
 import org.slf4j.Logger;
@@ -9,10 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
     private ProductRepository productRepository;
+    @Autowired
+    private ProductDTOMapper productDTOMapper;
+
     private Logger log= LoggerFactory.getLogger(ProductService.class);
 
     @Autowired
@@ -20,12 +26,13 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product>getAllProducts(){
-        return productRepository.findAll();
+    public List<ProductDTO>getAllProducts(){
+        return productRepository.findAll().stream().map(productDTOMapper).collect(Collectors.toList());
     }
 
-    public Product getProductById(Long id){
-        return productRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("The product with Id -> "+id+" doesn't exist"));
+    public ProductDTO getProductById(Long id){
+        Product product= productRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("The product with Id -> "+id+" doesn't exist"));
+        return productDTOMapper.apply(product);
     }
 
     public Boolean productExistsById(Long id){
@@ -43,7 +50,8 @@ public class ProductService {
 
 
 
-    public Product saveProduct(Product product){
-        return productRepository.save(product);
+    public ProductDTO saveProduct(Product product){
+        Product product1= productRepository.save(product);
+        return productDTOMapper.apply(product1);
     }
 }

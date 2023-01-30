@@ -1,7 +1,6 @@
-package com.example.shoppingcart.entity.customer;
+package com.example.shoppingcart.entity.appUser.customer;
 
 import com.example.shoppingcart.entity.appUser.AppUser;
-import com.example.shoppingcart.entity.customer.CustomerDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;

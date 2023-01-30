@@ -2,7 +2,7 @@ package com.example.shoppingcart.controller;
 
 import com.example.shoppingcart.ShoppingCartApplication;
 import com.example.shoppingcart.entity.appUser.AppUser;
-import com.example.shoppingcart.entity.customer.CustomerDTO;
+import com.example.shoppingcart.entity.appUser.customer.CustomerDTO;
 import com.example.shoppingcart.service.AppUserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;

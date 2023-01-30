@@ -1,9 +1,9 @@
 package com.example.shoppingcart.service;
 
-import com.example.shoppingcart.dto.OrderDTO;
+import com.example.shoppingcart.entity.order.OrderDTO;
 import com.example.shoppingcart.entity.appUser.AppUser;
-import com.example.shoppingcart.entity.Order;
-import com.example.shoppingcart.entity.Product;
+import com.example.shoppingcart.entity.order.Order;
+import com.example.shoppingcart.entity.product.Product;
 import com.example.shoppingcart.entity.ShoppingCart;
 import com.example.shoppingcart.exception.ResourceNotFoundException;
 import com.example.shoppingcart.repository.OrderRepository;

@@ -1,4 +1,4 @@
-package com.example.shoppingcart.entity.customer;
+package com.example.shoppingcart.entity.appUser.customer;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;

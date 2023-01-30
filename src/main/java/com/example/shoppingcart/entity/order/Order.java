@@ -1,5 +1,6 @@
-package com.example.shoppingcart.entity;
+package com.example.shoppingcart.entity.order;
 
+import com.example.shoppingcart.entity.ShoppingCart;
 import com.example.shoppingcart.entity.appUser.AppUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

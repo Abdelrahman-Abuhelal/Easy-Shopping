@@ -1,8 +1,8 @@
 package com.example.shoppingcart.service;
 
-import com.example.shoppingcart.entity.customer.CustomerDTO;
-import com.example.shoppingcart.entity.customer.CustomerDAO;
-import com.example.shoppingcart.entity.customer.CustomerDTOMapper;
+import com.example.shoppingcart.entity.appUser.customer.CustomerDTO;
+import com.example.shoppingcart.entity.appUser.customer.CustomerDAO;
+import com.example.shoppingcart.entity.appUser.customer.CustomerDTOMapper;
 import com.example.shoppingcart.entity.appUser.AppUser;
 import com.example.shoppingcart.entity.appUser.AppUserRole;
 import com.example.shoppingcart.exception.ResourceNotFoundException;

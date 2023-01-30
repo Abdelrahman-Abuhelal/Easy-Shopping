@@ -1,4 +1,4 @@
-package com.example.shoppingcart.dto;
+package com.example.shoppingcart.entity.order;
 
 import lombok.Data;
 
