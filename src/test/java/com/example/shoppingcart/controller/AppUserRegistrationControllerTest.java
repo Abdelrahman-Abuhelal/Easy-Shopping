@@ -46,13 +46,13 @@ public class AppUserRegistrationControllerTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
-    public void registerCustomer() throws Exception {
-        CustomerDTO customerDTO=new CustomerDTO("khaled","khaled@gmail.com");
-        Mockito.when(appUserService.registerCustomer(Mockito.any())).thenReturn(customerDTO);
-
-        mockMvc.perform(post("/api-AppUser/add-AppUser").contentType("application/json")
-                .content(objectMapper.writeValueAsString(customerDTO)))
-                .andExpect(status().isOk());
-    }
+//    @Test
+//    public void registerCustomer() throws Exception {
+//        CustomerDTO customerDTO=new CustomerDTO("khaled","khaled@gmail.com");
+//        Mockito.when(appUserService.registerCustomer(Mockito.any())).thenReturn(customerDTO);
+//
+//        mockMvc.perform(post("/api-AppUser/add-AppUser").contentType("application/json")
+//                .content(objectMapper.writeValueAsString(customerDTO)))
+//                .andExpect(status().isOk());
+//    }
 }

@@ -12,6 +12,7 @@ import com.example.shoppingcart.security.JWTResponseDto;
 import com.example.shoppingcart.security.JwtTokenUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,9 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class AppUserService implements UserDetailsService {
     private final AppUserRepository appUserRepository;
-    private Logger log= LoggerFactory.getLogger(ProductService.class);
     private final CustomerDTOMapper customerDTOMapper;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authManager;
