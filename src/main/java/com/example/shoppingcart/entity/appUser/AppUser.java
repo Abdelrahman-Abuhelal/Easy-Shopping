@@ -56,6 +56,11 @@ public class AppUser implements UserDetails {
         role=user;
     }
 
+    public AppUser(Long userId) {
+        super();
+        this.id=userId;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority =

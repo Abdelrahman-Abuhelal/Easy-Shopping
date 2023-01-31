@@ -1,10 +1,11 @@
 package com.example.shoppingcart.controller;
-
 import com.example.shoppingcart.entity.appUser.customer.CustomerDAO;
 import com.example.shoppingcart.entity.appUser.customer.CustomerDTO;
 import com.example.shoppingcart.entity.appUser.AppUser;
+import com.example.shoppingcart.security.LoginRequestDto;
 import com.example.shoppingcart.service.AppUserService;
 
+import com.example.shoppingcart.security.JWTResponseDto;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
 @RestController
 @RequestMapping("/api-users")
 public class AppUserRegistrationController {
@@ -40,11 +42,13 @@ public class AppUserRegistrationController {
         return ResponseEntity.ok(appUser.get());
     }
 
-    @PostMapping("/register-customer")
-    public ResponseEntity<?>registerCustomer(@RequestBody @Valid CustomerDAO customerDAO){
-        CustomerDTO customerDTO= appUserService.registerCustomer(customerDAO);
-        return ResponseEntity.ok(customerDTO);
-    }
+//    @PostMapping("/register-customer")
+//    public ResponseEntity<?>registerCustomer(@RequestBody @Valid CustomerDAO customerDAO){
+//        CustomerDTO customerDTO= appUserService.registerCustomer(customerDAO);
+//        return ResponseEntity.ok(customerDTO);
+//    }
+
+
 
 
 
