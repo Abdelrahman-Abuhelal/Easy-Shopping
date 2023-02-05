@@ -36,17 +36,17 @@ public class AppUserRegistrationController {
         return ResponseEntity.ok(customers);
     }
 
-    @GetMapping("/get-appUser/email/{email}")
+    @GetMapping("/get-appuser/email/{email}")
     public ResponseEntity<AppUser>getAppUserByEmail(@PathVariable String email){
         Optional<AppUser> appUser=  appUserService.getAppUserByEmail(email);
         return ResponseEntity.ok(appUser.get());
     }
 
-//    @PostMapping("/register-customer")
-//    public ResponseEntity<?>registerCustomer(@RequestBody @Valid CustomerDAO customerDAO){
-//        CustomerDTO customerDTO= appUserService.registerCustomer(customerDAO);
-//        return ResponseEntity.ok(customerDTO);
-//    }
+    @PostMapping("/register-customer")
+    public ResponseEntity<?>registerCustomer(@RequestBody @Valid CustomerDAO customerDAO){
+        CustomerDTO customerDTO= appUserService.registerCustomer(customerDAO);
+        return ResponseEntity.ok(customerDTO);
+    }
 
 
 

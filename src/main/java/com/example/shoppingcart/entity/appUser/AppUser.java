@@ -49,12 +49,12 @@ public class AppUser implements UserDetails {
         this.password=password;
         this.role=appUserRole;
     }
-
-    public AppUser(String customerUsername, String customerEmail, AppUserRole user) {
-        username=customerUsername;
-        email=customerEmail;
-        role=user;
+    public AppUser(String customerUsername, String password,AppUserRole user) {
+        this.username=customerUsername;
+        this.password=password;
+        this.role=user;
     }
+
 
     public AppUser(Long userId) {
         super();

@@ -36,20 +36,20 @@ public class AuthService {
 
     private final JwtTokenUtils jwtTokenUtils;
 
-    public JWTResponseDto login(String login, String password) {
+    public JWTResponseDto login(String username, String password) {
 //        log.info(login+"  "+ password);
         Authentication authentication = authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(login, password));
+                new UsernamePasswordAuthenticationToken(username, password));
 
         log.debug("Valid userDetails credentials.");
 
         AppUser userDetails = (AppUser) authentication.getPrincipal();
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        log.debug("SecurityContextHolder updated. [login={}]", login);
+        log.debug("SecurityContextHolder updated. [login={}]", username);
 
 
-        TokenInfo tokenInfo = createLoginToken(login, userDetails.getId());
+        TokenInfo tokenInfo = createLoginToken(username, userDetails.getId());
 
 
         return JWTResponseDto.builder()

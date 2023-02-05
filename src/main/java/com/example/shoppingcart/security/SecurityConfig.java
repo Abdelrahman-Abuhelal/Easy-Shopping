@@ -45,12 +45,16 @@ public class SecurityConfig   {
         return http.build();
     }
 
+
     @Bean
     public AuthFilter authFilter() {
         return new AuthFilter();
     }
 
-
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)

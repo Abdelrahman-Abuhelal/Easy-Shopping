@@ -13,11 +13,8 @@ import com.example.shoppingcart.security.JwtTokenUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -39,46 +36,45 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class AppUserService implements UserDetailsService {
+
+
     private final AppUserRepository appUserRepository;
     private final CustomerDTOMapper customerDTOMapper;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authManager;
-    private final HttpServletRequest httpRequest;
+    private  final HttpServletRequest httpRequest;
     private final TokenInfoService tokenInfoService;
 
-
-    @Autowired
-    public AppUserService(AppUserRepository appUserRepository, CustomerDTOMapper customerDTOMapper, PasswordEncoder passwordEncoder, AuthenticationManager authManager, HttpServletRequest httpRequest, TokenInfoService tokenInfoService) {
+    public AppUserService(@Lazy AppUserRepository appUserRepository, @Lazy CustomerDTOMapper customerDTOMapper,@Lazy PasswordEncoder passwordEncoder,@Lazy AuthenticationManager authManager,@Lazy HttpServletRequest httpRequest,@Lazy TokenInfoService tokenInfoService) {
         this.appUserRepository = appUserRepository;
-        this.customerDTOMapper=customerDTOMapper;
-        this.passwordEncoder=passwordEncoder;
+        this.customerDTOMapper = customerDTOMapper;
+        this.passwordEncoder = passwordEncoder;
         this.authManager = authManager;
         this.httpRequest = httpRequest;
         this.tokenInfoService = tokenInfoService;
     }
 
-    public JWTResponseDto registerCustomer(CustomerDAO customerDAO) throws ConstraintViolationException{
 
-          AppUser appUser= appUserRepository.save(new AppUser(customerDAO.getUsername(), customerDAO.getEmail(), customerDAO.getPassword(), AppUserRole.CUSTOMER));
-            Authentication authentication = authManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(appUser.getUsername(), appUser.getPassword()));
-            customerDAO.setPassword(passwordEncoder.encode(customerDAO.getPassword()));
+    public CustomerDTO registerCustomer(CustomerDAO customerDAO) throws ConstraintViolationException{
 
-            log.debug("Valid userDetails credentials.");
+        customerDAO.setPassword(passwordEncoder.encode(customerDAO.getPassword()));
 
-            AppUser userDetails = (AppUser) authentication.getPrincipal();
+        AppUser appUser= appUserRepository.save(new AppUser(customerDAO.getUsername(), customerDAO.getEmail(), customerDAO.getPassword(), AppUserRole.CUSTOMER));
+//            Authentication authentication = authManager.authenticate(
+//                    new UsernamePasswordAuthenticationToken(appUser.getUsername(), appUser.getPassword()));
+//
+//            log.debug("Valid userDetails credentials.");
+//
+//            AppUser userDetails = (AppUser) authentication.getPrincipal();
+//
+//            SecurityContextHolder.getContext().setAuthentication(authentication);
+//            log.debug("SecurityContextHolder updated. [login={}]", appUser.getUsername());
 
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            log.debug("SecurityContextHolder updated. [login={}]", appUser.getUsername());
+
+//            TokenInfo tokenInfo = createLoginToken(appUser.getUsername(), userDetails.getId());
 
 
-            TokenInfo tokenInfo = createLoginToken(appUser.getUsername(), userDetails.getId());
-
-
-            return JWTResponseDto.builder()
-                    .accessToken(tokenInfo.getAccessToken())
-                    .refreshToken(tokenInfo.getRefreshToken())
-                    .build();
+            return customerDTOMapper.apply(appUser);
 
 
     }
@@ -138,7 +134,7 @@ public class AppUserService implements UserDetailsService {
         if (!appUser.isPresent()){
             throw new UsernameNotFoundException(String.format("the user %s is not found with selected username: ",username));
         }
-        return new User(appUser.get().getUsername(),appUser.get().getPassword(),appUser.get().getAuthorities());
+        return new AppUser(appUser.get().getUsername(),appUser.get().getPassword(),appUser.get().getRole());
     }
 
 //    private static List<GrantedAuthority> getAuthorities(AppUser appUser) {
