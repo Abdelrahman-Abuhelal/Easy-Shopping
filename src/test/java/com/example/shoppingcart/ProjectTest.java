@@ -2,8 +2,8 @@ package com.example.shoppingcart;
 
 import com.example.shoppingcart.entity.appUser.AppUser;
 import com.example.shoppingcart.service.AppUserService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -11,10 +11,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {ShoppingCartApplication.class})
 public class ProjectTest {
     @Autowired

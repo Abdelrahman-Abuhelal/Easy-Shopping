@@ -5,6 +5,7 @@ import com.example.shoppingcart.entity.appUser.AppUser;
 import com.example.shoppingcart.entity.order.Order;
 import com.example.shoppingcart.entity.product.Product;
 import com.example.shoppingcart.entity.ShoppingCart;
+import com.example.shoppingcart.exception.OrderException;
 import com.example.shoppingcart.exception.ResourceNotFoundException;
 import com.example.shoppingcart.repository.OrderRepository;
 import com.example.shoppingcart.repository.ProductRepository;
@@ -23,9 +24,14 @@ public class OrderService {
         this.orderRepository = orderRepository;
         this.productRepository=productRepository;
     }
-    public Order getOrderDetail(Long id){
+
+    public Order getOrderDetail(Long id) throws OrderException {
        Optional<Order>order= orderRepository.findById(id);
-       return order.isPresent()? order.get():null;
+       if(!order.isPresent()) {
+           String msg = String.format("The order is not available, ID: %d", id);
+           throw new OrderException(msg);
+       }
+       return order.get();
     }
 
     public float getCartAmount(List<ShoppingCart>shoppingCartList){

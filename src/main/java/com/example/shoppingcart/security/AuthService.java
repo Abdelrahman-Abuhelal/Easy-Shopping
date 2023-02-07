@@ -8,9 +8,10 @@ import java.util.UUID;
 
 import com.example.shoppingcart.entity.appUser.AppUser;
 import com.example.shoppingcart.entity.token.TokenInfo;
-import com.example.shoppingcart.security.JwtTokenUtils;
 import com.example.shoppingcart.service.TokenInfoService;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 //import org.springframework.http.HttpRequest;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,12 +30,19 @@ import lombok.extern.log4j.Log4j2;
 public class AuthService {
 
     private final AuthenticationManager authManager;
-
     private final HttpServletRequest httpRequest;
 
     private final TokenInfoService tokenInfoService;
 
     private final JwtTokenUtils jwtTokenUtils;
+
+    @Autowired
+    public AuthService(AuthenticationManager authManager, TokenInfoService tokenInfoService, JwtTokenUtils jwtTokenUtils, HttpServletRequest httpRequest) {
+        this.authManager = authManager;
+        this.tokenInfoService = tokenInfoService;
+        this.jwtTokenUtils = jwtTokenUtils;
+        this.httpRequest = httpRequest;
+    }
 
     public JWTResponseDto login(String username, String password) {
 //        log.info(login+"  "+ password);

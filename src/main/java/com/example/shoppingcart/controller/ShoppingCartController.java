@@ -5,6 +5,7 @@ import com.example.shoppingcart.entity.order.ResponseOrderDTO;
 import com.example.shoppingcart.entity.appUser.AppUser;
 import com.example.shoppingcart.entity.order.Order;
 import com.example.shoppingcart.entity.ShoppingCart;
+import com.example.shoppingcart.exception.OrderException;
 import com.example.shoppingcart.service.AppUserService;
 import com.example.shoppingcart.service.OrderService;
 import com.example.shoppingcart.service.ProductService;
@@ -60,9 +61,16 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/orders/{orderId}")
-    public ResponseEntity<Order>getOrderDetail(@PathVariable Long orderId){
-       Order order= orderService.getOrderDetail(orderId);
-        return  ResponseEntity.ok(order);
+    public ResponseEntity getOrderDetail(@PathVariable Long orderId){
+        Order order= null;
+        try {
+            order = orderService.getOrderDetail(orderId);
+            return  ResponseEntity.ok(order);
+        } catch (OrderException e) {
+            // logger
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
     }
 
 

@@ -2,11 +2,9 @@ package com.example.shoppingcart.controller;
 
 import com.example.shoppingcart.ShoppingCartApplication;
 import com.example.shoppingcart.entity.appUser.AppUser;
-import com.example.shoppingcart.entity.appUser.customer.CustomerDTO;
 import com.example.shoppingcart.service.AppUserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -25,7 +23,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {ShoppingCartApplication.class})
 public class AppUserRegistrationControllerTest {
     @Autowired

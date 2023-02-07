@@ -1,15 +1,18 @@
 package com.example.shoppingcart.config;
 
-import com.example.shoppingcart.security.AuthFilter;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Configuration
 public class WebConfig {
 
+//    @Bean
+//    public HttpServletRequest httpServletRequest() {
+//        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+//    }
 
 
 

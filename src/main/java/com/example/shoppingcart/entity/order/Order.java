@@ -27,9 +27,13 @@ public class Order {
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private List<ShoppingCart>cartItems;
 
+
     public Order(String orderDescription, AppUser appUser, List<ShoppingCart> cartItems) {
         this.orderDescription=orderDescription;
         this.appUser=appUser;
         this.cartItems=cartItems;
+    }
+    public Order(Long id){
+        this.id=id;
     }
 }

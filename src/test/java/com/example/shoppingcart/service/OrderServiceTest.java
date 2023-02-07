@@ -1,9 +1,8 @@
 package com.example.shoppingcart.service;
 
-import com.example.shoppingcart.repository.AppUserRepository;
 import com.example.shoppingcart.ShoppingCartApplication;
-import com.example.shoppingcart.entity.appUser.AppUser;
-
+import com.example.shoppingcart.entity.order.Order;
+import com.example.shoppingcart.repository.OrderRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +15,23 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 @SpringBootTest
 @ContextConfiguration(classes = {ShoppingCartApplication.class})
-public class AppUserServiceTest {
+
+public class OrderServiceTest {
+
     @Autowired
-    private AppUserService appUserService;
+    private OrderService orderService;
 
     @MockBean
-    private AppUserRepository appUserRepository;
+    private OrderRepository orderRepository;
 
     @Test
-    public void findAppUserByEmailExists(){
-        String existedEmail="malik.hilal14@gmail.com";
-        AppUser appUser=new AppUser("Malik",existedEmail);
-        Mockito.when(appUserRepository.getAppUserByEmail(Mockito.anyString())).thenReturn(Optional.of(appUser));
-       Optional<AppUser>AppUser1= appUserService.getAppUserByEmail(existedEmail);
-       assertEquals(true,AppUser1.isPresent());
+    public void testGetOrderDetail(){
+        Order order=new Order();
+        order.setId(1L);
+        Mockito.when(orderRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(order));
+        Order testedOrder=orderService.getOrderDetail(1L);
+        assertEquals(order,testedOrder);
     }
 }
