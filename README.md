@@ -8,7 +8,7 @@
 * REST API
 * Hibernate
 * Spring JPA
-* Spring Security
+* Spring Security (JWT)
 * Junit
 * Mockito
 * MySQL Database
