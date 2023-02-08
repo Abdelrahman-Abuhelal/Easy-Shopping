@@ -27,7 +27,7 @@
 ![Screenshot (4)](https://user-images.githubusercontent.com/77440941/211189363-cb88b0fe-af74-4209-994b-3bdb50bb7b93.png)
 
 
-> It also handles if the product id is null.
+> It also handles if incorrect passed inputs.
 
 ![11](https://user-images.githubusercontent.com/77440941/212068401-02cc7d55-af69-499d-8601-9bda50664ac2.png)
 
